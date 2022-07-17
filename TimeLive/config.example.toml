@@ -1,0 +1,9 @@
+[owner]
+owner_name = ""
+owner_email = ""
+
+[database]
+
+[auth]
+google_client_id = ""
+google_client_secret = ""
