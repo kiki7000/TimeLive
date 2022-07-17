@@ -1,16 +1,20 @@
 from sanic import Sanic
-from sanic.response import text
+from sanic.response import text, redirect
 
 from TimeLive.config import TomlConfig
+
+from TimeLive.api.auth import Auth
 
 
 toml_config = TomlConfig(path="TimeLive/config.toml")
 app = Sanic("TimeLive", config=toml_config)
 
+app.blueprint(Auth)
+
 
 @app.get("/")
-async def hello_world(request):
-    return text("Hello, World!")
+async def main(request):
+    return redirect("/docs")
 
 
 @app.get("/test")

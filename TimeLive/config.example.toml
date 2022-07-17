@@ -1,3 +1,5 @@
+base_url = "http://localhost:8000"
+
 [owner]
 owner_name = ""
 owner_email = ""
@@ -7,3 +9,6 @@ owner_email = ""
 [auth]
 google_client_id = ""
 google_client_secret = ""
+
+naver_client_id = ""
+naver_client_secret = ""
