@@ -57,7 +57,6 @@ async def google_callback(request: Request):
                 }
             ) as response:
                 data = await response.json()
-                print(data)
                 token = data["access_token"]
         except Exception as _:
             raise BadRequest
