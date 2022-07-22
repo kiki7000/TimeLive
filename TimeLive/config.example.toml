@@ -5,6 +5,7 @@ owner_name = ""
 owner_email = ""
 
 [database]
+url = ""
 
 [auth]
 google_client_id = ""
