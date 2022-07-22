@@ -100,4 +100,4 @@ async def naver_callback(request: Request):
             headers={"Authorization": f"Bearer {token}"}
         ) as response:
             data = await response.json()
-            return json(data["resp nse"])
+            return json(data["response"])
