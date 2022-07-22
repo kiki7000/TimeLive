@@ -1,12 +1,13 @@
 from sanic import Blueprint, Request
 from sanic.response import json
 from sanic.exceptions import BadRequest
+from sanic_ext import openapi
 
 from aiohttp import ClientSession
 from urllib.parse import urlencode
 
 
-Auth = Blueprint("auth", url_prefix="/auth")
+Auth = Blueprint("Authorization", url_prefix="/auth")
 
 
 def create_url(url: str, **kwargs) -> str:
@@ -14,6 +15,8 @@ def create_url(url: str, **kwargs) -> str:
 
 
 @Auth.get("/login/google")
+@openapi.description("Google Login URL")
+@openapi.response(200, {"text/plain": str}, "Login URL")
 async def google_login(request: Request):
     return json({
         "login_url": create_url(
@@ -29,6 +32,8 @@ async def google_login(request: Request):
 
 
 @Auth.get("/login/naver")
+@openapi.description("Naver Login URL")
+@openapi.response(200, {"text/plain": str}, "Login URL")
 async def naver_login(request: Request):
     return json({
         "login_url": create_url(
@@ -43,6 +48,7 @@ async def naver_login(request: Request):
 
 
 @Auth.get("/callback/google")
+@openapi.exclude()
 async def google_callback(request: Request):
     async with ClientSession() as session:
         try:
@@ -70,6 +76,7 @@ async def google_callback(request: Request):
 
 
 @Auth.get("/callback/naver")
+@openapi.exclude()
 async def naver_callback(request: Request):
     async with ClientSession() as session:
         try:
@@ -93,4 +100,4 @@ async def naver_callback(request: Request):
             headers={"Authorization": f"Bearer {token}"}
         ) as response:
             data = await response.json()
-            return json(data["response"])
+            return json(data["resp nse"])

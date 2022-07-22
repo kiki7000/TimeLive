@@ -142,3 +142,4 @@ cython_debug/
 #
 guide/
 config.toml
+run.bat
